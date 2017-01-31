@@ -86,6 +86,8 @@
 		7CFDF8EB1DBBD5FC00CAADB3 /* GREYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFDF8E51DBBD5FC00CAADB3 /* GREYLogger.m */; };
 		7CFDF8EC1DBBD5FC00CAADB3 /* GREYObjectFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CFDF8E61DBBD5FC00CAADB3 /* GREYObjectFormatter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		7CFDF8ED1DBBD5FC00CAADB3 /* GREYObjectFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFDF8E71DBBD5FC00CAADB3 /* GREYObjectFormatter.m */; };
+		B92D237F1E40CAD600BFE8B6 /* GREYInterposer.h in Headers */ = {isa = PBXBuildFile; fileRef = B92D237D1E40CAD600BFE8B6 /* GREYInterposer.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		B92D23801E40CAD600BFE8B6 /* GREYInterposer.m in Sources */ = {isa = PBXBuildFile; fileRef = B92D237E1E40CAD600BFE8B6 /* GREYInterposer.m */; };
 		FD1001B01C5B46C200B2DB0A /* GREYAction.h in Headers */ = {isa = PBXBuildFile; fileRef = FD1001011C5B46C100B2DB0A /* GREYAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD1001B11C5B46C200B2DB0A /* GREYActionBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = FD1001021C5B46C100B2DB0A /* GREYActionBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD1001B21C5B46C200B2DB0A /* GREYActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1001031C5B46C100B2DB0A /* GREYActionBlock.m */; };
@@ -198,7 +200,6 @@
 		FD1002581C5B471200B2DB0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD06C66C1BECAD8B009032A5 /* CoreGraphics.framework */; };
 		FD10025A1C5B472C00B2DB0A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1002591C5B472C00B2DB0A /* IOKit.framework */; };
 		FD10025B1C5B473400B2DB0A /* OCHamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6160601BF2C97800722593 /* OCHamcrest.framework */; };
-		FD10025C1C5B489A00B2DB0A /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = FD61605D1BF2C80D00722593 /* fishhook.c */; };
 		FD1948261DA231ED00B9BA2D /* GREYStopwatch.h in Headers */ = {isa = PBXBuildFile; fileRef = FD1948221DA231ED00B9BA2D /* GREYStopwatch.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		FD1948271DA231ED00B9BA2D /* GREYStopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1948231DA231ED00B9BA2D /* GREYStopwatch.m */; };
 		FD242E731D14B73E00046221 /* GREYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FD242E711D14B73E00046221 /* GREYTestHelper.m */; };
@@ -259,6 +260,8 @@
 		7CFDF8E51DBBD5FC00CAADB3 /* GREYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GREYLogger.m; sourceTree = "<group>"; };
 		7CFDF8E61DBBD5FC00CAADB3 /* GREYObjectFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GREYObjectFormatter.h; sourceTree = "<group>"; };
 		7CFDF8E71DBBD5FC00CAADB3 /* GREYObjectFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GREYObjectFormatter.m; sourceTree = "<group>"; };
+		B92D237D1E40CAD600BFE8B6 /* GREYInterposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GREYInterposer.h; sourceTree = "<group>"; };
+		B92D237E1E40CAD600BFE8B6 /* GREYInterposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GREYInterposer.m; sourceTree = "<group>"; };
 		FD06C66B1BECAD8B009032A5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		FD06C66C1BECAD8B009032A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FD06C66F1BECAD9B009032A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -425,8 +428,6 @@
 		FD242E701D14B73E00046221 /* GREYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GREYTestHelper.h; sourceTree = "<group>"; };
 		FD242E711D14B73E00046221 /* GREYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GREYTestHelper.m; sourceTree = "<group>"; };
 		FD61605B1BF2C7D100722593 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
-		FD61605D1BF2C80D00722593 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fishhook.c; path = fishhook/fishhook.c; sourceTree = "<group>"; };
-		FD61605E1BF2C80D00722593 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fishhook.h; path = fishhook/fishhook.h; sourceTree = "<group>"; };
 		FD6160601BF2C97800722593 /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCHamcrest.framework; sourceTree = "<group>"; };
 		FD6D0B961C6D49400001EA75 /* GREYBaseAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GREYBaseAction.h; sourceTree = "<group>"; };
 		FD6D0B971C6D49400001EA75 /* GREYBaseAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GREYBaseAction.m; sourceTree = "<group>"; };
@@ -678,6 +679,8 @@
 				7CA546111E24133E007EA7F6 /* GREYFailureScreenshotter.h */,
 				7CA390411E31721C0028AE5F /* GREYFailureScreenshotter+Internal.h */,
 				7CA546121E24133E007EA7F6 /* GREYFailureScreenshotter.m */,
+				B92D237D1E40CAD600BFE8B6 /* GREYInterposer.h */,
+				B92D237E1E40CAD600BFE8B6 /* GREYInterposer.m */,
 			);
 			name = Common;
 			path = EarlGrey/Common;
@@ -824,29 +827,11 @@
 			path = EarlGrey/Synchronization;
 			sourceTree = SOURCE_ROOT;
 		};
-		FD61605A1BF2C75200722593 /* fishhook */ = {
-			isa = PBXGroup;
-			children = (
-				FD61605D1BF2C80D00722593 /* fishhook.c */,
-				FD61605E1BF2C80D00722593 /* fishhook.h */,
-			);
-			name = fishhook;
-			sourceTree = "<group>";
-		};
-		FDE401021BE83859001C172E /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				FD61605A1BF2C75200722593 /* fishhook */,
-			);
-			name = Dependencies;
-			sourceTree = "<group>";
-		};
 		FDE4FFA01BE831AA001C172E = {
 			isa = PBXGroup;
 			children = (
 				FD1000EA1C5B466F00B2DB0A /* EarlGrey */,
 				FD06C6751BECAE6A009032A5 /* Frameworks */,
-				FDE401021BE83859001C172E /* Dependencies */,
 				FDE4FFAA1BE831AA001C172E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -984,6 +969,7 @@
 				597E02DD1D55AD100052A8D1 /* GREYTimedIdlingResource.h in Headers */,
 				7CA546131E24133E007EA7F6 /* GREYFailureScreenshotter.h in Headers */,
 				7CA390421E3177270028AE5F /* GREYFailureScreenshotter+Internal.h in Headers */,
+				B92D237F1E40CAD600BFE8B6 /* GREYInterposer.h in Headers */,
 				597E02DC1D55AD100052A8D1 /* GREYDispatchQueueTracker.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1075,12 +1061,12 @@
 				FD1001E61C5B46C200B2DB0A /* UIAnimation+GREYAdditions.m in Sources */,
 				FD1002041C5B46C200B2DB0A /* GREYConfiguration.m in Sources */,
 				FD1001EE1C5B46C200B2DB0A /* UITouch+GREYAdditions.m in Sources */,
+				B92D23801E40CAD600BFE8B6 /* GREYInterposer.m in Sources */,
 				7CCBEBA71DCD2F0500CC01B8 /* GREYError.m in Sources */,
 				FD1002061C5B46C200B2DB0A /* GREYConstants.m in Sources */,
 				FD10021B1C5B46C200B2DB0A /* GREYCAAnimationDelegate.m in Sources */,
 				FD1001B41C5B46C200B2DB0A /* GREYActions.m in Sources */,
 				FD6D0B991C6D49400001EA75 /* GREYBaseAction.m in Sources */,
-				FD10025C1C5B489A00B2DB0A /* fishhook.c in Sources */,
 				FD10023C1C5B46C200B2DB0A /* GREYElementProvider.m in Sources */,
 				FD1002131C5B46C200B2DB0A /* GREYElementFinder.m in Sources */,
 				FD1002471C5B46C200B2DB0A /* GREYDispatchQueueIdlingResource.m in Sources */,
@@ -1178,10 +1164,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = (
-					EarlGrey/,
-					fishhook/,
-				);
+				HEADER_SEARCH_PATHS = EarlGrey/;
 				INFOPLIST_FILE = "EarlGrey-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1223,10 +1206,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = (
-					EarlGrey/,
-					fishhook/,
-				);
+				HEADER_SEARCH_PATHS = EarlGrey/;
 				INFOPLIST_FILE = "EarlGrey-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
