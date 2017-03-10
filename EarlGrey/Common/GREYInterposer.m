@@ -171,7 +171,7 @@ static pthread_rwlock_t gSafePointerUpdateLock = PTHREAD_RWLOCK_INITIALIZER;
   if (dladdr(&gTupleCount, &info) == 0) {
     NSAssert(NO, @"dladdr returned with error");
   }
-  intptr_t earlgreySlide = (intptr_t)info.dli_fbase;
+  __unused intptr_t earlgreySlide = (intptr_t)info.dli_fbase;
   NSAssert(earlgreySlide != 0, @"could not find EarlGrey image slide");
 
   // Thread safety with _dyld_image_count: While it is unlikely that DYLD will remove an image while
@@ -420,7 +420,7 @@ static void grey_interposer_check_lock(const struct mach_header *header, intptr_
     const struct dyld_all_image_infos* allImageInfos = _dyld_get_all_image_infos();
     const struct dyld_image_info *likelyDyldSim = &allImageInfos->infoArray[0];
     uintptr_t slide = (uintptr_t)likelyDyldSim->imageLoadAddress;
-    BOOL isDyldSim = strstr(likelyDyldSim->imageFilePath, "/usr/lib/dyld_sim") != NULL;
+    __unused BOOL isDyldSim = strstr(likelyDyldSim->imageFilePath, "/usr/lib/dyld_sim") != NULL;
     NSAssert(isDyldSim, @"cannot find dyld_sim image info");
 
     /*
@@ -451,7 +451,7 @@ static void grey_interposer_check_lock(const struct mach_header *header, intptr_
      *             84 D2              test dl, dl
      */
     const uintptr_t patch1 = iOS8_2_OR_ABOVE() ? (slide + 0x90f8) : (slide + 0x90e8);
-    const uint64_t original1 = iOS8_2_OR_ABOVE() ? 0xd2840001fe0e158a : 0xd2840001fe1e158a;
+    __unused const uint64_t original1 = iOS8_2_OR_ABOVE() ? 0xd2840001fe0e158a : 0xd2840001fe1e158a;
 
     /*
      *  Patch #2 : Modify dyld_dynamic_interpose to not store 1 in static variable
@@ -489,7 +489,7 @@ static void grey_interposer_check_lock(const struct mach_header *header, intptr_
      *             A9 00 00 00        test eax, 0x1000000   ; first 4 out of 5 bytes
      */
     const uintptr_t patch2 = iOS8_2_OR_ABOVE() ? (slide + 0x93f8) : (slide + 0x93e8);
-    const uint64_t original2 = iOS8_2_OR_ABOVE() ? 0x1fb0b05c60000 : 0x1fb1b05c60000;
+    __unused const uint64_t original2 = iOS8_2_OR_ABOVE() ? 0x1fb0b05c60000 : 0x1fb1b05c60000;
 
     NSAssert((patch1 & 7) == 0, @"not aligned on 8-byte boundary");
     NSAssert((patch2 & 7) == 0, @"not aligned on 8-byte boundary");
@@ -498,9 +498,9 @@ static void grey_interposer_check_lock(const struct mach_header *header, intptr_
 
     // We must get write permission for protected memory region from the kernel.
     vm_prot_t rwx = VM_PROT_ALL;
-    mach_error_t error1 = vm_protect(mach_task_self(), patch1, sizeof(uint64_t), false, rwx);
+    __unused mach_error_t error1 = vm_protect(mach_task_self(), patch1, sizeof(uint64_t), false, rwx);
     NSAssert(error1 == KERN_SUCCESS, @"failed to make memory for dyld_sim patches writable");
-    mach_error_t error2 = vm_protect(mach_task_self(), patch2, sizeof(uint64_t), false, rwx);
+    __unused mach_error_t error2 = vm_protect(mach_task_self(), patch2, sizeof(uint64_t), false, rwx);
     NSAssert(error2 == KERN_SUCCESS, @"failed to make memory for dyld_sim patches writable");
 
     // Thread safe: Since these 64-bit pointers are aligned on 8-byte boundary, the compiler should
@@ -513,9 +513,9 @@ static void grey_interposer_check_lock(const struct mach_header *header, intptr_
 
     // Set memory permission back to read and execute only.
     vm_prot_t rx = VM_PROT_READ | VM_PROT_EXECUTE;
-    mach_error_t error3 = vm_protect(mach_task_self(), patch1, sizeof(uint64_t), false, rx);
+    __unused mach_error_t error3 = vm_protect(mach_task_self(), patch1, sizeof(uint64_t), false, rx);
     NSAssert(error3 == KERN_SUCCESS, @"failed to make memory for dyld_sim patches writable");
-    mach_error_t error4 = vm_protect(mach_task_self(), patch2, sizeof(uint64_t), false, rx);
+    __unused mach_error_t error4 = vm_protect(mach_task_self(), patch2, sizeof(uint64_t), false, rx);
     NSAssert(error4 == KERN_SUCCESS, @"failed to make memory for dyld_sim patches writable");
   }
 }
