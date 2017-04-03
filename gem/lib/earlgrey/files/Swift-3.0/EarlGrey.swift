@@ -17,78 +17,78 @@
 import EarlGrey
 import Foundation
 
-public func GREYAssert(_ expression: @autoclosure () -> Bool, reason: String) {
-  GREYAssert(expression, reason, details: "Expected expression to be true")
+public func GREYAssert(_ expression: @autoclosure () -> Bool, reason: String, file: StaticString = #file, line: UInt = #line) {
+  GREYAssert(expression, reason, details: "Expected expression to be true", file: file, line: line)
 }
 
-public func GREYAssertTrue(_ expression: @autoclosure () -> Bool, reason: String) {
-  GREYAssert(expression(), reason, details: "Expected the boolean expression to be true")
+public func GREYAssertTrue(_ expression: @autoclosure () -> Bool, reason: String, file: StaticString = #file, line: UInt = #line) {
+  GREYAssert(expression(), reason, details: "Expected the boolean expression to be true", file: file, line: line)
 }
 
-public func GREYAssertFalse(_ expression: @autoclosure () -> Bool, reason: String) {
-  GREYAssert(!expression(), reason, details: "Expected the boolean expression to be false")
+public func GREYAssertFalse(_ expression: @autoclosure () -> Bool, reason: String, file: StaticString = #file, line: UInt = #line) {
+  GREYAssert(!expression(), reason, details: "Expected the boolean expression to be false", file: file, line: line)
 }
 
-public func GREYAssertNotNil(_ expression: @autoclosure ()-> Any?, reason: String) {
-  GREYAssert(expression() != nil, reason, details: "Expected expression to be not nil")
+public func GREYAssertNotNil(_ expression: @autoclosure ()-> Any?, reason: String, file: StaticString = #file, line: UInt = #line) {
+  GREYAssert(expression() != nil, reason, details: "Expected expression to be not nil", file: file, line: line)
 }
 
-public func GREYAssertNil(_ expression: @autoclosure () -> Any?, reason: String) {
-  GREYAssert(expression() == nil, reason, details: "Expected expression to be nil")
+public func GREYAssertNil(_ expression: @autoclosure () -> Any?, reason: String, file: StaticString = #file, line: UInt = #line) {
+  GREYAssert(expression() == nil, reason, details: "Expected expression to be nil", file: file, line: line)
 }
 
 public func GREYAssertEqual(_ left: @autoclosure () -> AnyObject?,
-                            _ right: @autoclosure () -> AnyObject?, reason: String) {
-  GREYAssert(left() === right(), reason, details: "Expected left term to be equal to right term")
+                            _ right: @autoclosure () -> AnyObject?, reason: String, file: StaticString = #file, line: UInt = #line) {
+  GREYAssert(left() === right(), reason, details: "Expected left term to be equal to right term", file: file, line: line)
 }
 
 public func GREYAssertNotEqual(_ left: @autoclosure () -> AnyObject?,
-                               _ right: @autoclosure () -> AnyObject?, reason: String) {
-  GREYAssert(left() !== right(), reason, details: "Expected left term to not equal the right term")
+                               _ right: @autoclosure () -> AnyObject?, reason: String, file: StaticString = #file, line: UInt = #line) {
+  GREYAssert(left() !== right(), reason, details: "Expected left term to not equal the right term", file: file, line: line)
 }
 
 public func GREYAssertEqualObjects<T: Equatable>( _ left: @autoclosure () -> T?,
-                                                  _ right: @autoclosure () -> T?, reason: String) {
+                                                  _ right: @autoclosure () -> T?, reason: String, file: StaticString = #file, line: UInt = #line) {
   GREYAssert(left() == right(), reason, details: "Expected object of the left term to be equal" +
-    " to the object of the right term")
+    " to the object of the right term", file: file, line: line)
 }
 
 public func GREYAssertNotEqualObjects<T: Equatable>( _ left: @autoclosure () -> T?,
-                                      _ right: @autoclosure () -> T?, reason: String) {
+                                      _ right: @autoclosure () -> T?, reason: String, file: StaticString = #file, line: UInt = #line) {
   GREYAssert(left() != right(), reason, details: "Expected object of the left term to not" +
-    " equal the object of the right term")
+    " equal the object of the right term", file: file, line: line)
 }
 
-public func GREYFail(_ reason: String) {
+public func GREYFail(_ reason: String, file: StaticString = #file, line: UInt = #line) {
   EarlGrey.handle(exception: GREYFrameworkException(name: kGREYAssertionFailedException,
                                                     reason: reason),
-                  details: "")
+                  details: "", file: file, line: line)
 }
 
-public func GREYFailWithDetails(_ reason: String, details: String) {
+public func GREYFailWithDetails(_ reason: String, details: String, file: StaticString = #file, line: UInt = #line) {
   EarlGrey.handle(exception: GREYFrameworkException(name: kGREYAssertionFailedException,
                                                     reason: reason),
-                  details: details)
+                  details: details, file: file, line: line)
 }
 
 private func GREYAssert(_ expression: @autoclosure () -> Bool,
-                        _ reason: String, details: String) {
-  GREYSetCurrentAsFailable()
+                        _ reason: String, details: String, file: StaticString = #file, line: UInt = #line) {
+  GREYSetCurrentAsFailable(file: file, line: line)
   GREYWaitUntilIdle()
   if !expression() {
     EarlGrey.handle(exception: GREYFrameworkException(name: kGREYAssertionFailedException,
                                                       reason: reason),
-                    details: details)
+                    details: details, file: file, line: line)
   }
 }
 
-private func GREYSetCurrentAsFailable() {
+private func GREYSetCurrentAsFailable(file: StaticString = #file, line: UInt = #line) {
   let greyFailureHandlerSelector =
     #selector(GREYFailureHandler.setInvocationFile(_:andInvocationLine:))
   let greyFailureHandler =
     Thread.current.threadDictionary.value(forKey: kGREYFailureHandlerKey) as! GREYFailureHandler
   if greyFailureHandler.responds(to: greyFailureHandlerSelector) {
-    greyFailureHandler.setInvocationFile!(#file, andInvocationLine:#line)
+    greyFailureHandler.setInvocationFile!(file.description, andInvocationLine:line)
   }
 }
 
