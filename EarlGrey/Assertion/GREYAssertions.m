@@ -34,7 +34,7 @@
 + (void)grey_raiseExceptionNamed:(NSString *)name
                 exceptionDetails:(NSString *)details
                        withError:(GREYError *)error {
-  id<GREYFailureHandler> failureHandler = getFailureHandler();
+  id<GREYFailureHandler> failureHandler = grey_getFailureHandler();
   NSString *reason = [GREYError grey_nestedDescriptionForError:error];
   [failureHandler handleException:[GREYFrameworkException exceptionWithName:name
                                                                      reason:reason]
@@ -44,7 +44,7 @@
 + (id<GREYAssertion>)grey_createAssertionWithMatcher:(id<GREYMatcher>)matcher {
   NSParameterAssert(matcher);
 
-  NSString *assertionName = [NSString stringWithFormat:@"assertWithMatcher: %@", matcher];
+  NSString *assertionName = [NSString stringWithFormat:@"assertWithMatcher:%@", matcher];
   return [GREYAssertionBlock assertionWithName:assertionName
                        assertionBlockWithError:^BOOL (id element, NSError *__strong *errorOrNil) {
     GREYStringDescription *mismatch = [[GREYStringDescription alloc] init];

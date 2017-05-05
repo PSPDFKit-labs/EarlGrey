@@ -2,6 +2,66 @@
 
 Details changes in each release of EarlGrey. EarlGrey follows [semantic versioning](http://semver.org/).
 
+## [1.9.2](https://github.com/google/EarlGrey/tree/1.9.2) (04/21/2017)
+
+```
+Baseline: [b9d7a7c]
+   + [b9d7a7c]: Update OS=10.3 for travis CI
+```
+
+### Bug Fixes
+* Fixed timeout related failures from being reported as assertion failures.
+* Fixed to wait for rotation to complete before verifying that it changed.
+* Fixed Swift breaks by correcting issue with Gem adding EarlGrey.swift for
+  Objective C targets.
+* Fixed race condition with reading and writing to state tracker elementID.
+
+## [1.9.1](https://github.com/google/EarlGrey/tree/1.9.1) (04/14/2017)
+
+```
+Baseline: [932c3f6]
+   + [932c3f6]: Doc updates
+```
+
+### Bug Fixes
+* Fixed a bug in interaction point calculation for cases where activation point
+and the center of visible area is hidden.
+
+### Enhancements
+* Updated documentation for GREYCondition and ruby setup.
+* Minor improvements to formatting of failure messages.
+* Updated travis to run tests on iOS 10.3 and Xcode 8.3.
+* Deleted .arcconfig file.
+
+### Contributors
+* [bootstraponline](https://github.com/bootstraponline)
+
+## [1.9.0](https://github.com/google/EarlGrey/tree/1.9.0) (03/31/2017)
+
+```
+Baseline: [6bceffc]
+   + [6bceffc]: Sync 1.9.0
+```
+
+### Compatibility
+* Requires iOS 8 as the minimum deployment target.
+* Supports Xcode 8.3 and iOS 10.3 on devices and simulators.
+* The EarlGrey gem runs out of the box for Swift 3.0 and Swift 2.3.
+
+### New Features
+* Add `-[GREYKeyboard dismissKeyboardWithError:]` API to dismiss the keyboard.
+
+### Enhancements
+* Improved earlgrey gem by removing post_install and letting pod update
+  the project.
+* Improved swift support for `grey_allOf` and `grey_anyOf`.
+* Several documentation updates including installation steps improvements.
+* Added gem badge to `README.md`.
+
+### Contributors
+* [bootstraponline](https://github.com/bootstraponline)
+* [Felix Krause](https://github.com/KrauseFx)<br/>
+
 ## [1.8.0](https://github.com/google/EarlGrey/tree/1.8.0) (03/17/2017)
 
 ```
@@ -32,7 +92,7 @@ Baseline: [0dc7c18]
 * Unified the `Copy Files` modification script for Carthage and CocoaPods support.
 
 ### Contributors
-[bootstraponline](https://github.com/bootstraponline)<br/> 
+[bootstraponline](https://github.com/bootstraponline)<br/>
 [petaren](https://github.com/petaren)
 
 ## [1.7.2](https://github.com/google/EarlGrey/tree/1.7.2) (02/17/2017)
