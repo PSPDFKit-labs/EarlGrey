@@ -15,6 +15,8 @@
 //
 
 #import "Matcher/GREYAnyOf.h"
+
+#import "Common/GREYThrowDefines.h"
 #import "Matcher/GREYStringDescription.h"
 
 @implementation GREYAnyOf {
@@ -22,7 +24,7 @@
 }
 
 - (instancetype)initWithMatchers:(NSArray *)matchers {
-  NSParameterAssert(matchers.count > 0);
+  GREYThrowOnFailedCondition(matchers.count > 0);
 
   self = [super init];
   if (self) {
@@ -65,15 +67,20 @@
 
 #if !(GREY_DISABLE_SHORTHAND)
 
-id<GREYMatcher> grey_anyOf(id<GREYMatcher> matcher, ...) {
+id<GREYMatcher> grey_anyOf(id<GREYMatcher> first,
+                           id<GREYMatcher> second,
+                           id<GREYMatcher> thirdOrNil,
+                           ...) {
   va_list args;
-  va_start(args, matcher);
+  va_start(args, thirdOrNil);
 
-  NSMutableArray *matcherList = [[NSMutableArray alloc] init];
-  id<GREYMatcher> nextMatcher = matcher;
-  do {
-    [matcherList addObject:nextMatcher];
-  } while ((nextMatcher = va_arg(args, id<GREYMatcher>)) != nil);
+  NSMutableArray *matcherList = [[NSMutableArray alloc] initWithObjects:first, second, nil];
+  if (thirdOrNil != nil) {
+    id<GREYMatcher> nextMatcher = thirdOrNil;
+    do {
+      [matcherList addObject:nextMatcher];
+    } while ((nextMatcher = va_arg(args, id<GREYMatcher>)) != nil);
+  }
 
   va_end(args);
   return [[GREYAnyOf alloc] initWithMatchers:matcherList];

@@ -24,10 +24,11 @@
 #import "Additions/UISwitch+GREYAdditions.h"
 #import "Additions/NSError+GREYAdditions.h"
 #import "Assertion/GREYAssertionDefines.h"
+#import "Common/GREYAppleInternals.h"
 #import "Common/GREYConfiguration.h"
 #import "Common/GREYConstants.h"
-#import "Common/GREYExposed.h"
 #import "Common/GREYError.h"
+#import "Common/GREYFatalAsserts.h"
 #import "Common/GREYVisibilityChecker.h"
 #import "Core/GREYElementFinder.h"
 #import "Core/GREYElementInteraction.h"
@@ -218,7 +219,8 @@ static const double kElementSufficientlyVisiblePercentage = 0.75;
 }
 
 + (id<GREYMatcher>)matcherForMinimumVisiblePercent:(CGFloat)percent {
-  NSAssert(percent >= 0.0f && percent <= 1.0f, @"Percent %f must be in the range [0,1]", percent);
+  GREYFatalAssertWithMessage(percent >= 0.0f && percent <= 1.0f,
+                             @"Percent %f must be in the range [0,1]", percent);
   MatchesBlock matches = ^BOOL(UIView *element) {
     return [GREYVisibilityChecker percentVisibleAreaOfElement:element] > percent;
   };
@@ -568,7 +570,7 @@ static const double kElementSufficientlyVisiblePercentage = 0.75;
     return element == nil;
   };
   DescribeToBlock describe = ^void(id<GREYDescription> description) {
-    [description appendText:@"nil"];
+    [description appendText:@"isNil"];
   };
   return [[GREYElementMatcherBlock alloc] initWithMatchesBlock:matches descriptionBlock:describe];
 }
@@ -578,7 +580,7 @@ static const double kElementSufficientlyVisiblePercentage = 0.75;
     return element != nil;
   };
   DescribeToBlock describe = ^void(id<GREYDescription> description) {
-    [description appendText:@"notNil"];
+    [description appendText:@"isNotNil"];
   };
   return [[GREYElementMatcherBlock alloc] initWithMatchesBlock:matches descriptionBlock:describe];
 }
@@ -620,6 +622,19 @@ static const double kElementSufficientlyVisiblePercentage = 0.75;
                                                        NSStringFromGREYContentEdge(edge)]];
   };
   return grey_allOf(grey_kindOfClass([UIScrollView class]),
+                    [[GREYElementMatcherBlock alloc] initWithMatchesBlock:matches
+                                                         descriptionBlock:describe],
+                    nil);
+}
+
++ (id<GREYMatcher>)matcherForTextFieldValue:(NSString *)value {
+  MatchesBlock matches = ^BOOL(UITextField *textField) {
+    return [textField.text isEqualToString:value];
+  };
+  DescribeToBlock describe = ^void(id<GREYDescription> description) {
+    [description appendText:[NSString stringWithFormat:@"textFieldValue('%@')", value]];
+  };
+  return grey_allOf(grey_kindOfClass([UITextField class]),
                     [[GREYElementMatcherBlock alloc] initWithMatchesBlock:matches
                                                          descriptionBlock:describe],
                     nil);
@@ -824,6 +839,10 @@ id<GREYMatcher> grey_greaterThan(id value) {
 
 id<GREYMatcher> grey_scrolledToContentEdge(GREYContentEdge edge) {
   return [GREYMatchers matcherForScrolledToContentEdge:edge];
+}
+
+id<GREYMatcher> grey_textFieldValue(NSString *value) {
+  return [GREYMatchers matcherForTextFieldValue:value];
 }
 
 #endif // GREY_DISABLE_SHORTHAND

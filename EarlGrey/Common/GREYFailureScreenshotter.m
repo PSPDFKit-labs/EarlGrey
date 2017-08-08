@@ -20,7 +20,6 @@
 #import "Common/GREYScreenshotUtil.h"
 #import "Common/GREYScreenshotUtil+Internal.h"
 #import "Common/GREYVisibilityChecker.h"
-#import "Common/GREYVisibilityChecker+Internal.h"
 
 NSString *const kScreenshotAtFailure = @"Screenshot At Failure";
 NSString *const kScreenshotBeforeImage = @"Visibility Checker Most Recent Before Image";
@@ -39,10 +38,12 @@ static inline NSInteger getNextScreenshotCount() {
 
 + (NSDictionary *)generateAppScreenshotsWithPrefix:(NSString *)screenshotPrefix
                                            failure:(NSString *)failureName {
-
-  NSString *screenshotDir = GREY_CONFIG_STRING(kGREYConfigKeyScreenshotDirLocation);
+  NSString *screenshotDir = GREY_CONFIG_STRING(kGREYConfigKeyArtifactsDirLocation);
   NSString *uniqueSubDirName =
-  [NSString stringWithFormat:@"%@-%@", failureName, [[NSUUID UUID] UUIDString]];
+      [NSString stringWithFormat:@"%@-%@-%@",
+                                 screenshotPrefix,
+                                 failureName,
+                                 [[NSUUID UUID] UUIDString]];
   screenshotDir = [screenshotDir stringByAppendingPathComponent:uniqueSubDirName];
   return [self generateAppScreenshotsWithPrefix:screenshotPrefix
                                         failure:failureName

@@ -2,8 +2,8 @@
 
 #### **How does EarlGrey compare to Xcode’s UI Testing?**
 
-EarlGrey is more of a [gray-box testing](https://en.wikipedia.org/wiki/Gray_box_testing) solution
-whereas Xcode’s UI Testing is completely [black-box](https://en.wikipedia.org/wiki/Black-box_testing).
+EarlGrey is a [white-box testing](https://en.wikipedia.org/wiki/White_box_testing) solution
+whereas Xcode’s UI Testing is [black-box](https://en.wikipedia.org/wiki/Black-box_testing).
 EarlGrey runs in the same process as the app under test, so it has access to the same memory as the
 app. This allows for better synchronization, such as ability to wait for network requests, and
 allows for custom synchronization mechanisms that aren’t possible when using Xcode’s UI Testing feature.
@@ -454,12 +454,12 @@ EarlGrey().selectElementWithMatcher(grey_accessibilityLabel("label"))
 
 #### **How do I change the directory location for where the screenshots are stored?**
 
-You need to change kGREYConfigKeyScreenshotDirLocation in GREYConfiguration to change the location.
+You can change the kGREYConfigKeyArtifactsDirLocation key in GREYConfiguration to change the location.
 
 ```objc
 // Objective-C
 [[GREYConfiguration sharedInstance] setValue:@"screenshot_dir_path"
-                                forConfigKey:kGREYConfigKeyScreenshotDirLocation];
+                                forConfigKey:kGREYConfigKeyArtifactsDirLocation];
 ```
 
 #### **How do I run tests against a precompiled app?**

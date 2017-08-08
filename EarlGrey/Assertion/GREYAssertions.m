@@ -25,6 +25,7 @@
 #import "Matcher/GREYMatchers.h"
 #import "Matcher/GREYStringDescription.h"
 #import "Common/GREYError.h"
+#import "Common/GREYFatalAsserts.h"
 #import "Common/GREYLogger.h"
 
 @implementation GREYAssertions
@@ -42,7 +43,7 @@
 }
 
 + (id<GREYAssertion>)grey_createAssertionWithMatcher:(id<GREYMatcher>)matcher {
-  NSParameterAssert(matcher);
+  GREYFatalAssert(matcher);
 
   NSString *assertionName = [NSString stringWithFormat:@"assertWithMatcher:%@", matcher];
   return [GREYAssertionBlock assertionWithName:assertionName
@@ -52,7 +53,7 @@
       NSMutableString *reason = [[NSMutableString alloc] init];
       NSMutableDictionary *glossary = [[NSMutableDictionary alloc] init];
       if (!element) {
-        [reason appendFormat:@"Assertion with matcher [M] failed: no UI element was matched."];
+        [reason appendFormat:@"Assertion with matcher [M] failed: No UI element was matched."];
         glossary[@"M"] = [matcher description];
 
         GREYPopulateErrorNotedOrLog(errorOrNil,
@@ -62,7 +63,7 @@
                                     glossary);
       } else {
         [reason appendFormat:@"Assertion with matcher [M] failed: UI element [E] failed to match "
-                             @"due to the mismatch [S]."];
+                             @"the following matcher(s): [S]"];
         glossary[@"M"] = [matcher description];
         glossary[@"E"] = [element grey_description];
         glossary[@"S"] = [mismatch description];
@@ -72,11 +73,6 @@
                                     kGREYInteractionAssertionFailedErrorCode,
                                     reason,
                                     glossary);
-      }
-
-      // Log error if we are not populating errorOrNil.
-      if (!errorOrNil) {
-        GREYLogError(*errorOrNil);
       }
       return NO;
     }

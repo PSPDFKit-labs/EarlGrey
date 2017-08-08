@@ -1,5 +1,5 @@
 //
-// Copyright 2016 Google Inc.
+// Copyright 2017 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,21 +14,18 @@
 // limitations under the License.
 //
 
-/**
- *  @file GREYAppStateTracker+Internal.h
- *  @brief Exposes GREYAppStateTracker's interfaces and methods that are otherwise private for
- *  testing purposes.
- */
+#import <UIKit/UIKit.h>
 
-#import <EarlGrey/GREYAppStateTracker.h>
+@interface GREYUTAccessibilityViewContainerView : UIView
 
-@interface GREYAppStateTracker (Internal)
+@property(nonatomic, strong) NSMutableArray *accessibleElements;
 
-/**
- *  Clears all states that are tracked by the GREYAppStateTracker singleton.
- *
- *  @remark This is available only for internal testing purposes.
- */
-- (void)grey_clearState;
+- (id)initWithImage:(UIImage *)image;
+- (id)initWithElements:(NSArray *)elements;
+
+// UIAccessibilityContainer methods
+- (NSInteger)accessibilityElementCount;
+- (id)accessibilityElementAtIndex:(NSInteger)index;
+- (NSInteger)indexOfAccessibilityElement:(id)element;
 
 @end

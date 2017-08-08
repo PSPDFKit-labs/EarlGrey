@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="NO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="NO">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="7000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FTRMultiFingerSwipeGestureRecognizerViewController">
@@ -24,15 +24,11 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcB-0i-jxD">
-                    <rect key="frame" x="16" y="49" width="343" height="514"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zcB-0i-jxD">
+                    <rect key="frame" x="16" y="49" width="343" height="602"/>
                     <color key="backgroundColor" red="0.72336632013320923" green="0.72336632013320923" blue="0.72336632013320923" alpha="1" colorSpace="calibratedRGB"/>
                     <accessibility key="accessibilityConfiguration" identifier="gestureRecognizerBox"/>
                     <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="514" id="1PV-da-CqC"/>
-                        <constraint firstAttribute="width" constant="343" id="G39-6S-isj"/>
-                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,6 +36,7 @@
                 <constraint firstItem="m5i-4d-AdD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1uI-UM-EUu"/>
                 <constraint firstItem="zcB-0i-jxD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="AL5-K2-iDW"/>
                 <constraint firstAttribute="trailing" secondItem="zcB-0i-jxD" secondAttribute="trailing" constant="16" id="GTF-4T-BHI"/>
+                <constraint firstAttribute="bottom" secondItem="zcB-0i-jxD" secondAttribute="bottom" constant="16" id="LnN-7y-MJN"/>
                 <constraint firstItem="zcB-0i-jxD" firstAttribute="top" secondItem="m5i-4d-AdD" secondAttribute="bottom" constant="8" id="egh-u8-1Db"/>
                 <constraint firstItem="m5i-4d-AdD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="trU-xW-VTY"/>
             </constraints>

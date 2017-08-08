@@ -15,7 +15,7 @@
 //
 
 /**
- *  @file GREYExposed.h
+ *  @file GREYAppleInternals.h
  *  @brief Exposes interfaces, structs and methods that are otherwise private.
  */
 

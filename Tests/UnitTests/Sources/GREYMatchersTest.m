@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
+#import <EarlGrey/GREYAppleInternals.h>
 #import <EarlGrey/GREYElementInteraction.h>
-#import <EarlGrey/GREYExposed.h>
 #import <EarlGrey/GREYMatcher.h>
 #import <EarlGrey/GREYMatchers.h>
 #import <EarlGrey/GREYStringDescription.h>
@@ -614,6 +614,17 @@
   [uiswitch setOn:YES];
   XCTAssertFalse([[GREYMatchers matcherForSwitchWithOnState:NO] matches:uiswitch]);
   XCTAssertTrue([[GREYMatchers matcherForSwitchWithOnState:YES] matches:uiswitch]);
+}
+
+- (void)testTextFieldValueMatcher {
+  UITextField *textField = [[UITextField alloc] init];
+  textField.text = @"Foo";
+  id<GREYMatcher> matcher = grey_textFieldValue(@"Bar");
+  XCTAssertFalse([matcher matches:textField], @"TextField Test matcher should return false");
+  textField.text = @"Bar";
+  XCTAssertTrue([matcher matches:textField], @"TextField Test matcher should return true");
+  UIView *view = [[UIView alloc] init];
+  XCTAssertFalse([matcher matches:view], @"UIView does not have title");
 }
 
 @end

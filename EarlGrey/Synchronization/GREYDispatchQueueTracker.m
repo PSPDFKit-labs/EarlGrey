@@ -21,6 +21,8 @@
 
 #import "Common/GREYConfiguration.h"
 #import "Common/GREYInterposer.h"
+#import "Common/GREYFatalAsserts.h"
+#import "Common/GREYThrowDefines.h"
 
 /**
  *  A pointer to the original implementation of @c dispatch_after.
@@ -323,7 +325,7 @@ static const dyld_interpose_tuple grey_static_interpose_tuples[] = {
 #pragma mark -
 
 + (instancetype)trackerForDispatchQueue:(dispatch_queue_t)queue {
-  NSParameterAssert(queue);
+  GREYThrowOnNilParameter(queue);
 
   @synchronized(gDispatchQueueToTracker) {
     GREYDispatchQueueTracker *tracker = grey_getTrackerForQueue(queue);
@@ -337,7 +339,7 @@ static const dyld_interpose_tuple grey_static_interpose_tuples[] = {
 }
 
 - (instancetype)initWithDispatchQueue:(dispatch_queue_t)queue {
-  NSParameterAssert(queue);
+  GREYThrowOnNilParameter(queue);
 
   self = [super init];
   if (self) {
@@ -347,13 +349,26 @@ static const dyld_interpose_tuple grey_static_interpose_tuples[] = {
 }
 
 - (BOOL)isIdleNow {
-  NSAssert(_pendingBlocks >= 0, @"_pendingBlocks must not be negative");
+  GREYFatalAssertWithMessage(_pendingBlocks >= 0, @"_pendingBlocks must not be negative");
   BOOL isIdle = OSAtomicCompareAndSwap32Barrier(0, 0, &_pendingBlocks);
   return isIdle;
 }
 
 - (BOOL)isTrackingALiveQueue {
   return _dispatchQueue != nil;
+}
+
+- (NSString *)description {
+  NSMutableString *description =
+      [[NSMutableString alloc] initWithFormat:@"Tracking dispatch queue: %@", _dispatchQueue];
+  [description appendString:@" and the following methods used on the queue:"];
+  [description appendString:@" dispatch_sync"];
+  [description appendString:@", dispatch_sync_f"];
+  [description appendString:@", dispatch_async"];
+  [description appendString:@", dispatch_async_f"];
+  [description appendString:@", dispatch_after"];
+  [description appendString:@", dispatch_after_f"];
+  return description;
 }
 
 #pragma mark - Private
