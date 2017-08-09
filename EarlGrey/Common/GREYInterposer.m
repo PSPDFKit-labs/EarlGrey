@@ -23,6 +23,7 @@
 #include <pthread.h>
 
 #import "Assertion/GREYAssertionDefines.h"
+#import "Common/GREYFatalAsserts.h"
 
 #if __LP64__
 #define LC_SEGMENT_COMMAND LC_SEGMENT_64
@@ -117,7 +118,7 @@ static pthread_rwlock_t gSafePointerUpdateLock = PTHREAD_RWLOCK_INITIALIZER;
 }
 
 - (instancetype)initOnce {
-  I_CHECK_MAIN_THREAD();
+  GREYFatalAssertMainThread();
 
   self = [super init];
   if (self) {
@@ -151,7 +152,7 @@ static pthread_rwlock_t gSafePointerUpdateLock = PTHREAD_RWLOCK_INITIALIZER;
 }
 
 - (void)commit {
-  I_CHECK_MAIN_THREAD();
+  GREYFatalAssertMainThread();
   NSAssert(!_committed, @"interposer was already locked in final state");
   _committed = YES;
 
@@ -412,7 +413,7 @@ static void grey_interposer_check_lock(const struct mach_header *header, intptr_
  *       TODO(sskhandp): Remove this patch once EarlGrey stops supporting iOS 8.x simulator.
  */
 + (void)grey_patchDYLDSim {
-  I_CHECK_MAIN_THREAD();
+  GREYFatalAssertMainThread();
 
   // Version check must happen at run-time.
   if (iOS8_0_OR_ABOVE() && !iOS9_OR_ABOVE()) {
