@@ -111,9 +111,9 @@
 		7CFDF8EB1DBBD5FC00CAADB3 /* GREYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFDF8E51DBBD5FC00CAADB3 /* GREYLogger.m */; };
 		7CFDF8EC1DBBD5FC00CAADB3 /* GREYObjectFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CFDF8E61DBBD5FC00CAADB3 /* GREYObjectFormatter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		7CFDF8ED1DBBD5FC00CAADB3 /* GREYObjectFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFDF8E71DBBD5FC00CAADB3 /* GREYObjectFormatter.m */; };
-		84DF9F241F5849A7009AE448 /* GREYSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = FD1001631C5B46C200B2DB0A /* GREYSwizzler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84DF9F241F5849A7009AE448 /* GREYSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = FD1001631C5B46C200B2DB0A /* GREYSwizzler.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		84DF9F251F5849BF009AE448 /* GREYScreenshotUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = FD1001611C5B46C200B2DB0A /* GREYScreenshotUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		84DF9F261F5849D5009AE448 /* GREYErrorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = FDA218EB1E450A9900693978 /* GREYErrorConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84DF9F261F5849D5009AE448 /* GREYErrorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = FDA218EB1E450A9900693978 /* GREYErrorConstants.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D210ED8D1E6F47D100978B9E /* GREYMultiFingerSwipeAction.h in Headers */ = {isa = PBXBuildFile; fileRef = D210ED8B1E6F47D100978B9E /* GREYMultiFingerSwipeAction.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D210ED8E1E6F47D100978B9E /* GREYMultiFingerSwipeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = D210ED8C1E6F47D100978B9E /* GREYMultiFingerSwipeAction.m */; };
 		FD1001B01C5B46C200B2DB0A /* GREYAction.h in Headers */ = {isa = PBXBuildFile; fileRef = FD1001011C5B46C100B2DB0A /* GREYAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
