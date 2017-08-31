@@ -111,6 +111,9 @@
 		7CFDF8EB1DBBD5FC00CAADB3 /* GREYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFDF8E51DBBD5FC00CAADB3 /* GREYLogger.m */; };
 		7CFDF8EC1DBBD5FC00CAADB3 /* GREYObjectFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CFDF8E61DBBD5FC00CAADB3 /* GREYObjectFormatter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		7CFDF8ED1DBBD5FC00CAADB3 /* GREYObjectFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFDF8E71DBBD5FC00CAADB3 /* GREYObjectFormatter.m */; };
+		84DF9F241F5849A7009AE448 /* GREYSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = FD1001631C5B46C200B2DB0A /* GREYSwizzler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84DF9F251F5849BF009AE448 /* GREYScreenshotUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = FD1001611C5B46C200B2DB0A /* GREYScreenshotUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84DF9F261F5849D5009AE448 /* GREYErrorConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = FDA218EB1E450A9900693978 /* GREYErrorConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D210ED8D1E6F47D100978B9E /* GREYMultiFingerSwipeAction.h in Headers */ = {isa = PBXBuildFile; fileRef = D210ED8B1E6F47D100978B9E /* GREYMultiFingerSwipeAction.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D210ED8E1E6F47D100978B9E /* GREYMultiFingerSwipeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = D210ED8C1E6F47D100978B9E /* GREYMultiFingerSwipeAction.m */; };
 		FD1001B01C5B46C200B2DB0A /* GREYAction.h in Headers */ = {isa = PBXBuildFile; fileRef = FD1001011C5B46C100B2DB0A /* GREYAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -911,6 +914,7 @@
 				FD1001B31C5B46C200B2DB0A /* GREYActions.h in Headers */,
 				FD6D0B981C6D49400001EA75 /* GREYBaseAction.h in Headers */,
 				FD1001B11C5B46C200B2DB0A /* GREYActionBlock.h in Headers */,
+				84DF9F251F5849BF009AE448 /* GREYScreenshotUtil.h in Headers */,
 				FD1001BD1C5B46C200B2DB0A /* GREYScrollActionError.h in Headers */,
 				FD1001F91C5B46C200B2DB0A /* GREYIdlingResource.h in Headers */,
 				FD1001FA1C5B46C200B2DB0A /* GREYAssertion.h in Headers */,
@@ -987,6 +991,7 @@
 				597E02FF1D55AF3C0052A8D1 /* NSRunLoop+GREYAdditions.h in Headers */,
 				597E03001D55AF3C0052A8D1 /* NSString+GREYAdditions.h in Headers */,
 				597E03011D55AF3C0052A8D1 /* NSTimer+GREYAdditions.h in Headers */,
+				84DF9F261F5849D5009AE448 /* GREYErrorConstants.h in Headers */,
 				61E1CA901F2A922700FE81B9 /* GREYObjcRuntime.h in Headers */,
 				597E02CE1D55AC320052A8D1 /* GREYAnalytics.h in Headers */,
 				597E02CF1D55AC380052A8D1 /* GREYAnalyticsDelegate.h in Headers */,
@@ -999,6 +1004,7 @@
 				597E02D31D55AC580052A8D1 /* GREYVisibilityChecker.h in Headers */,
 				597E02D51D55AC640052A8D1 /* GREYKeyboard.h in Headers */,
 				597E03061D55B5BB0052A8D1 /* GREYInteractionDataSource.h in Headers */,
+				84DF9F241F5849A7009AE448 /* GREYSwizzler.h in Headers */,
 				597E02F71D55ADBE0052A8D1 /* GREYSurrogateDelegate.h in Headers */,
 				597E02D61D55AC730052A8D1 /* GREYCAAnimationDelegate.h in Headers */,
 				597E02D71D55AC730052A8D1 /* GREYUIWebViewDelegate.h in Headers */,
