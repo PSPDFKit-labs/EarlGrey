@@ -157,7 +157,8 @@ static pthread_rwlock_t gSafePointerUpdateLock = PTHREAD_RWLOCK_INITIALIZER;
   _committed = YES;
 
   // On 64-bit iOS 8.x simulator we have to fix a bug in dyld_sim.
-#if TARGET_IPHONE_SIMULATOR && __LP64__
+#if TARGET_IPHONE_SIMULATOR && __LP64__ && PSPDF_ENABLE_PATCH_DYLD_SIM
+    // PSPDF_ENABLE_PATCH_DYLD_SIM: `grey_patchDYLDSim` causes a linker error in Xcode 9. We don't need it since we don't use iOS 8 simulators.
   [GREYInterposer grey_patchDYLDSim];
 #endif
 
@@ -349,7 +350,7 @@ static void grey_interposer_check_lock(const struct mach_header *header, intptr_
 }
 
 // DYLD bug only exists in 64-bit iOS 8.x simulator.
-#if TARGET_IPHONE_SIMULATOR && __LP64__
+#if TARGET_IPHONE_SIMULATOR && __LP64__ && PSPDF_ENABLE_PATCH_DYLD_SIM
 /*
  * Bug:  dyld_sim in 64-bit iOS simulator, versions 8.0 through 8.4, uses the wrong type for
  *       acquiring and releasing sAllImagesLock, accidentally using 32 additional bits of memory
